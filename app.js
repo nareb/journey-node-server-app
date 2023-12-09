@@ -2,6 +2,8 @@ import "dotenv/config";
 import session from "express-session";
 import express from 'express';
 import mongoose from "mongoose";
+import LikesRoutes from "./likes/routes.js";
+import FollowsRoutes from "./follows/routes.js";
 import UserRoutes from "./users/routes.js";
 import Hello from "./hello.js"
 import cors from "cors";
@@ -38,6 +40,8 @@ const sessionOptions = {
 
 app.use(express.json());
 
+FollowsRoutes(app);
+LikesRoutes(app);
 UserRoutes(app);
 Hello(app)
 
