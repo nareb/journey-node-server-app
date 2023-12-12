@@ -102,6 +102,22 @@ function UserRoutes(app) {
     res.json(currentUser);
   };
 
+  // Add a new route to post a status
+  app.post("/api/users/:userId/post-status", async (req, res) => {
+    const { userId } = req.params;
+    const status = req.body;
+    const updatedUser = await dao.postStatus(userId, status);
+    res.json(updatedUser);
+  });
+
+  // Update the createUser route if needed
+  app.post("/api/users", async (req, res) => {
+    const user = await dao.createUser(req.body);
+    res.json(user);
+  });
+
+
+
   app.post("/api/users/signout", signout);
   app.post("/api/users/signin", signin);
   app.post("/api/users/signup", signup);

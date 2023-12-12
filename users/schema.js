@@ -1,4 +1,13 @@
 import mongoose from "mongoose";
+
+const statusSchema = new mongoose.Schema(
+  {
+    status: String,
+    createdAt: { type: Date, default: Date.now },
+  },
+  { _id: false }
+);
+
 const schema = new mongoose.Schema(
   {
     username: { type: String, unique: true, required: true },
@@ -15,6 +24,7 @@ const schema = new mongoose.Schema(
     doh: { type: Date, default: Date.now },
     firstName: String,
     lastName: String,
+    statuses: [statusSchema], // Add this line to include the statuses field
   },
   { collection: "users" }
 );
