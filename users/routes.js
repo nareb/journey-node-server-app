@@ -105,7 +105,7 @@ function UserRoutes(app) {
   // Add a new route to post a status
   app.post("/api/users/:userId/post-status", async (req, res) => {
     const { userId } = req.params;
-    const status = req.body;
+    const status = JSON.parse(req.body);
     const updatedUser = await dao.postStatus(userId, status);
     res.json(updatedUser);
   });
